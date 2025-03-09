@@ -246,4 +246,9 @@ app.get("/answers", async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+const PORT = 5000;
+const HOST = "0.0.0.0"; // Allow access from all network devices
+
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
+});

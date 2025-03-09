@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+
 const cors = require("cors");
 const axios = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -7,13 +7,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://prorishab:prorishab@cluster0.0fmkg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://prorishab:prorishab@cluster0.0fmkg.mongodb.net/?retryWrites=true&tls=true"
+  )
+  .then(() => console.log("MongoDB Connected Successfully"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
 // Post Schema
 const PostSchema = new mongoose.Schema({
